@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #2E3191;
+  --color-ink-deep: #23256e;
+  --color-sky: #27AAE1;
+  --color-sky-soft: #eaf6fd;
+  --color-stone: #606161;
+  --color-stone-soft: #9a9b9b;
+  --color-paper: #ffffff;
+  --color-shell: #f6f7f9;
+  --color-line: #e6e8ec;
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-stone);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: var(--color-ink);
+    color: #fff;
+  }
+}
+
+@layer utilities {
+  .container-x {
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    .container-x { padding-inline: 3.5rem; }
+  }
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .display-1 { font-size: clamp(2.5rem, 5vw, 4.75rem); line-height: 1.0; }
+  .display-2 { font-size: clamp(2rem, 4.2vw, 3.75rem); line-height: 1.04; }
+  .display-3 { font-size: clamp(1.75rem, 3.2vw, 3rem); line-height: 1.08; }
+  .lead { font-size: clamp(1.0625rem, 1.35vw, 1.375rem); line-height: 1.6; }
+  .noise-none { background-image: none; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #fff; }
+::-webkit-scrollbar-thumb { background: #d6d9e0; border-radius: 99px; border: 3px solid #fff; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink); }
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
