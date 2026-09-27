@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Logo from "./Logo";
+import { ButtonLink } from "./ArrowLink";
 import { NAV } from "@/data/site";
 
 const EASE = [0.16, 1, 0.3, 1];
@@ -94,18 +95,18 @@ export default function Header() {
                 onClick={() => setOpen((v) => !v)}
                 aria-label={open ? "Close menu" : "Open menu"}
                 aria-expanded={open}
-                className={`relative z-[55] flex h-11 w-11 items-center justify-center rounded-full border transition-colors duration-500 lg:hidden ${
+                className={`relative z-[45] flex h-11 w-11 items-center justify-center rounded-full border transition-opacity duration-300 lg:hidden ${
                   light ? "border-white/30 bg-transparent" : "border-line bg-white"
-                }`}
+                } ${open ? "pointer-events-none opacity-0" : "opacity-100"}`}
               >
                 <span className="relative block h-3 w-4">
                   <motion.span
-                    animate={open ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+                    animate={open ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
                     transition={{ duration: 0.4, ease: EASE }}
                     className={`absolute left-0 top-0 h-px w-full ${light ? "bg-white" : "bg-ink"}`}
                   />
                   <motion.span
-                    animate={open ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+                    animate={open ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
                     transition={{ duration: 0.4, ease: EASE }}
                     className={`absolute bottom-0 left-0 h-px w-full ${light ? "bg-white" : "bg-ink"}`}
                   />
@@ -125,8 +126,24 @@ export default function Header() {
             transition={{ duration: 0.65, ease: EASE }}
             className="fixed inset-0 z-[52] bg-white lg:hidden"
           >
-            <div className="container-x flex h-full flex-col justify-between pb-10 pt-32">
-              <nav className="flex flex-col">
+            <div className="container-x flex h-full flex-col overflow-y-auto pb-10">
+              <div className="flex h-[72px] shrink-0 items-center justify-between">
+                <Link href="/" aria-label="BroadArks home" onClick={() => setOpen(false)}>
+                  <Logo />
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="Close menu"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white text-ink"
+                >
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
+                    <path d="M6 6l12 12M18 6L6 18" />
+                  </svg>
+                </button>
+              </div>
+
+              <nav className="mt-10 flex flex-col">
                 {NAV.map((item, i) => (
                   <motion.div
                     key={item.href}
@@ -137,7 +154,7 @@ export default function Header() {
                   >
                     <Link
                       href={item.href}
-                      className="flex items-baseline gap-4 py-5 font-sans text-[2rem] tracking-tight text-ink"
+                      className="flex items-baseline gap-4 py-5 font-sans text-[1.75rem] tracking-tight text-ink sm:text-[2rem]"
                     >
                       <span className="font-body text-[0.6875rem] tracking-[0.2em] text-sky">
                         0{i + 1}
@@ -147,11 +164,23 @@ export default function Header() {
                   </motion.div>
                 ))}
               </nav>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.45, duration: 0.6 }}
+                className="mt-10"
+              >
+                <ButtonLink href="/contact">
+                  Start a conversation
+                </ButtonLink>
+              </motion.div>
+
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
-                className="space-y-1 text-sm text-stone"
+                className="mt-auto space-y-1 pt-10 text-sm text-stone"
               >
                 <p className="eyebrow text-stone-soft">Get in touch</p>
                 <a href="mailto:hello@broadarks.com" className="block text-ink">hello@broadarks.com</a>

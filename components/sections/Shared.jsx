@@ -13,7 +13,7 @@ const EASE = [0.16, 1, 0.3, 1];
 export function PageHero({ eyebrow, title, accent, lead, meta }) {
   return (
     <section className="relative border-b border-line bg-white">
-      <div className="container-x pb-16 pt-36 lg:pb-24 lg:pt-48">
+      <div className="container-x pb-14 pt-28 sm:pt-32 lg:pb-24 lg:pt-48">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,7 +49,7 @@ export function PageHero({ eyebrow, title, accent, lead, meta }) {
           ) : null}
 
           {meta?.length ? (
-            <div className="grid grid-cols-2 gap-6 lg:col-span-4 lg:col-start-9">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-7 lg:col-span-4 lg:col-start-9">
               {meta.map((m, i) => (
                 <motion.div
                   key={m.label}
@@ -127,9 +127,9 @@ export function JournalTeaser({ limit = 3 }) {
         </div>
 
         <div className="mt-14">
-          <Stagger className="grid gap-12 md:grid-cols-3 md:gap-8 lg:gap-12">
+          <Stagger className="grid items-stretch gap-14 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 lg:gap-12">
             {posts.map((p) => (
-              <StaggerItem key={p.slug}>
+              <StaggerItem key={p.slug} className="h-full">
                 <PostCard post={p} />
               </StaggerItem>
             ))}
@@ -142,7 +142,10 @@ export function JournalTeaser({ limit = 3 }) {
 
 export function PostCard({ post }) {
   return (
-    <Link href={`/blog/${post.slug}`} className="group block h-full border-t border-line pb-2 pt-8">
+    <Link
+      href={`/blog/${post.slug}`}
+      className="group flex h-full flex-col border-t border-line pt-8"
+    >
       <div className="mb-6 aspect-[16/10] overflow-hidden bg-shell">
         <img
           src={post.image}
@@ -151,18 +154,14 @@ export function PostCard({ post }) {
           loading="lazy"
         />
       </div>
-      <div className="flex items-center gap-3 text-[0.7rem] uppercase tracking-[0.16em] text-stone-soft">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.7rem] uppercase tracking-[0.16em] text-stone-soft">
         <span className="text-sky">{post.category}</span>
-        <span>·</span>
+        <span aria-hidden>·</span>
         <span>{post.readTime}</span>
       </div>
-      <h3 className="mt-4 font-sans text-xl leading-snug text-ink">
-        <span className="relative inline">
-          {post.title}
-        </span>
-      </h3>
+      <h3 className="mt-4 font-sans text-lg leading-snug text-ink sm:text-xl">{post.title}</h3>
       <p className="mt-3 text-sm leading-relaxed text-stone">{post.excerpt}</p>
-      <p className="mt-5 text-xs text-stone-soft">{post.date}</p>
+      <p className="mt-auto pt-6 text-xs text-stone-soft">{post.date}</p>
     </Link>
   );
 }
@@ -184,7 +183,7 @@ export function CTABand({
         </h2>
         <Reveal delay={0.15}>
           <p className="lead mt-8 max-w-xl text-white/65">{text}</p>
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <ButtonLink href={primary.href} variant="lightSolid">{primary.label}</ButtonLink>
             {secondary ? (
               <ButtonLink href={secondary.href} variant="light">

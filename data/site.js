@@ -241,5 +241,4 @@ export const NAV = [
   { label: "About", href: "/about" },
   { label: "Divisions", href: "/divisions" },
   { label: "Journal", href: "/blog" },
-  { label: "Contact", href: "/contact" },
 ];

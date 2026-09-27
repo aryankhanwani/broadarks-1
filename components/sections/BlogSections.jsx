@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SectionLabel } from "@/components/Section";
 import { ArrowLink } from "@/components/ArrowLink";
 import { CurtainMedia, Parallax, Reveal, Words, ZoomMedia } from "@/components/Motion";
+import { SOCIALS } from "@/components/Social";
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -137,7 +138,7 @@ export function Newsletter() {
 export function ArticleHero({ post }) {
   return (
     <section className="border-b border-line bg-white">
-      <div className="container-x pb-14 pt-36 lg:pb-20 lg:pt-48">
+      <div className="container-x pb-14 pt-28 sm:pt-32 lg:pb-20 lg:pt-48">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -179,14 +180,18 @@ export function ArticleBody({ post }) {
           <aside className="lg:col-span-3">
             <div className="lg:sticky lg:top-32">
               <p className="eyebrow text-stone-soft">Share</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {["LinkedIn", "X", "Copy link"].map((s) => (
-                  <span
-                    key={s}
-                    className="cursor-pointer rounded-full border border-line px-3.5 py-1.5 text-xs text-stone transition-colors duration-500 hover:border-ink/30 hover:text-ink"
+              <div className="mt-4 flex flex-wrap gap-2.5">
+                {SOCIALS.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    aria-label={`Share on ${s.label}`}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-stone transition-colors duration-500 hover:border-ink/30 hover:text-ink"
                   >
-                    {s}
-                  </span>
+                    {s.icon}
+                  </a>
                 ))}
               </div>
             </div>

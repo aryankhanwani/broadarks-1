@@ -44,7 +44,7 @@ export function DivisionBlock({ d, i }) {
                   </span>
                 ))}
               </div>
-              <div className="mt-10 flex flex-wrap items-center gap-8">
+              <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-8">
                 <ButtonLink href={`/divisions/${d.slug}`}>Explore {d.name}</ButtonLink>
                 <ArrowLink href={d.href} external>
                   {d.site}
@@ -71,7 +71,7 @@ export function DivisionHero({ d }) {
         <img src={d.hero} alt="" className="h-full w-full object-cover opacity-45" />
       </motion.div>
 
-      <div className="container-x relative flex min-h-[86svh] flex-col justify-end pb-16 pt-40 lg:pb-24">
+      <div className="container-x relative flex min-h-[80svh] flex-col justify-end pb-14 pt-32 sm:min-h-[86svh] lg:pb-24 lg:pt-40">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,10 +96,10 @@ export function DivisionHero({ d }) {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.5, ease: EASE }}
-          className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-4 border-t border-white/15 pt-8"
+          className="mt-10 flex flex-col items-start gap-5 border-t border-white/15 pt-8 sm:flex-row sm:items-center sm:gap-x-10 lg:mt-12"
         >
           <span className="eyebrow text-white/60">{d.kicker}</span>
-          <span className="ml-auto">
+          <span className="sm:ml-auto">
             <ArrowLink href={d.href} external light>
               Visit {d.site}
             </ArrowLink>

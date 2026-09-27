@@ -56,7 +56,6 @@ export default function DivisionsRail() {
                 <div className="relative h-px w-40 bg-line">
                   <motion.div style={{ scaleX: progress }} className="absolute inset-0 origin-left bg-ink" />
                 </div>
-                <span className="eyebrow text-stone-soft">Scroll</span>
               </div>
             </div>
           </div>

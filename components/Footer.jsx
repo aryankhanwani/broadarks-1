@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import { ArrowLink } from "./ArrowLink";
 import { Reveal, Rule } from "./Motion";
 import { DIVISIONS, NAV } from "@/data/site";
+import { SOCIALS } from "./Social";
 
 export default function Footer() {
   const scrollTop = () => {
@@ -16,8 +17,8 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-line bg-white">
       <div className="container-x py-16 lg:py-24">
-        <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-5">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10">
+          <div className="sm:col-span-2 lg:col-span-5">
             <Reveal>
               <Logo />
               <p className="mt-6 max-w-sm text-[0.95rem] leading-relaxed text-stone">
@@ -25,14 +26,17 @@ export default function Footer() {
                 one shared ambition — meaningful progress for people, businesses and communities.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                {["LinkedIn", "X", "Instagram"].map((s) => (
+                {SOCIALS.map((s) => (
                   <a
-                    key={s}
-                    href="#"
-                    className="group relative overflow-hidden rounded-full border border-line px-4 py-2 text-xs tracking-tight text-stone transition-colors duration-500 hover:text-white"
+                    key={s.label}
+                    href={s.href}
+                    aria-label={s.label}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-line text-stone transition-colors duration-500 hover:text-white"
                   >
                     <span className="absolute inset-0 origin-bottom scale-y-0 bg-ink transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-y-100" />
-                    <span className="relative">{s}</span>
+                    <span className="relative">{s.icon}</span>
                   </a>
                 ))}
               </div>
@@ -64,7 +68,7 @@ export default function Footer() {
             <Reveal delay={0.1}>
               <p className="eyebrow text-stone-soft">Navigate</p>
               <ul className="mt-6 space-y-3.5">
-                {NAV.map((n) => (
+                {[...NAV, { label: "Contact", href: "/contact" }].map((n) => (
                   <li key={n.href}>
                     <Link href={n.href} className="text-[0.95rem] text-stone transition-colors hover:text-ink">
                       {n.label}
@@ -104,17 +108,31 @@ export default function Footer() {
 
         <div className="mt-16 lg:mt-24">
           <Rule />
-          <div className="relative mt-8 overflow-hidden">
-            <motion.p
-              initial={{ y: "22%", opacity: 0 }}
-              whileInView={{ y: "0%", opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="select-none text-center font-sans text-[15vw] font-semibold leading-[0.82] tracking-[-0.045em] text-ink/[0.07] lg:text-[13vw]"
-            >
-              BROADARKS
-            </motion.p>
-          </div>
+          <motion.div
+            initial={{ y: "14%", opacity: 0 }}
+            whileInView={{ y: "0%", opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8 select-none"
+            aria-hidden
+          >
+            {/* textLength pins the wordmark to the container width — it can never overflow. */}
+            <svg viewBox="0 0 1000 142" className="block w-full" role="presentation">
+              <text
+                x="0"
+                y="128"
+                textLength="1000"
+                lengthAdjust="spacingAndGlyphs"
+                fontSize="170"
+                fontWeight="600"
+                fill="currentColor"
+                className="font-sans text-ink/[0.07]"
+                style={{ fontFamily: "var(--font-jakarta), ui-sans-serif, system-ui, sans-serif" }}
+              >
+                BROADARKS
+              </text>
+            </svg>
+          </motion.div>
         </div>
 
         <div className="mt-10 flex flex-col gap-4 border-t border-line pt-8 text-xs text-stone-soft sm:flex-row sm:items-center sm:justify-between">

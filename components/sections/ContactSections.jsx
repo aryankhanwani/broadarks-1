@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { SectionLabel } from "@/components/Section";
 import { ArrowLink } from "@/components/ArrowLink";
-import { Reveal, Rule, Words, ZoomMedia } from "@/components/Motion";
+import { Reveal, Words } from "@/components/Motion";
 import { DIVISIONS } from "@/data/site";
 
 const EASE = [0.16, 1, 0.3, 1];
@@ -130,7 +130,7 @@ export function ContactForm() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: EASE }}
-                className="border border-line p-10 lg:p-14"
+                className="border border-line p-7 sm:p-10 lg:p-14"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-full bg-ink text-lg text-white">
                   ✓
@@ -205,10 +205,10 @@ export function ContactForm() {
                   textarea
                 />
 
-                <div className="flex flex-wrap items-center gap-6">
+                <div className="flex flex-col items-start gap-5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
                   <button
                     type="submit"
-                    className="group relative inline-flex items-center overflow-hidden rounded-full border border-ink bg-ink px-8 py-4 text-sm font-medium text-white transition-colors duration-500 hover:text-ink"
+                    className="group relative inline-flex w-full items-center justify-center overflow-hidden rounded-full border border-ink bg-ink px-8 py-4 text-sm font-medium text-white transition-colors duration-500 hover:text-ink sm:w-auto sm:justify-start"
                   >
                     <span className="absolute inset-0 origin-bottom scale-y-0 bg-white transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-y-100" />
                     <span className="relative flex items-center">
@@ -268,45 +268,6 @@ export function DivisionContacts() {
               </div>
             </Reveal>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Offices() {
-  const offices = [
-    { city: "New Delhi", role: "Headquarters", lines: ["BroadArks House", "Connaught Place", "New Delhi 110001"] },
-    { city: "Bengaluru", role: "Technology studio", lines: ["Vihanga.ai Labs", "Indiranagar", "Bengaluru 560038"] },
-    { city: "Jaipur", role: "Craft studio", lines: ["Karigreen Workshop", "Civil Lines", "Jaipur 302006"] },
-  ];
-
-  return (
-    <section className="bg-white py-20 lg:py-28">
-      <div className="container-x">
-        <Rule />
-        <div className="grid gap-12 pt-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <SectionLabel>Where we are</SectionLabel>
-            <div className="mt-10 space-y-px">
-              {offices.map((o, i) => (
-                <Reveal key={o.city} delay={i * 0.06}>
-                  <div className="group border-t border-line py-7">
-                    <div className="flex items-baseline justify-between">
-                      <h3 className="font-sans text-2xl text-ink transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-1.5">
-                        {o.city}
-                      </h3>
-                      <span className="text-xs uppercase tracking-[0.14em] text-stone-soft">{o.role}</span>
-                    </div>
-                    <p className="mt-3 text-sm leading-relaxed text-stone">{o.lines.join(" · ")}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-          <div className="lg:col-span-6 lg:col-start-7">
-            <ZoomMedia src="/img/contact-map.svg" alt="Map placeholder" className="h-[40vh] w-full lg:h-[62vh]" />
-          </div>
         </div>
       </div>
     </section>

@@ -29,7 +29,7 @@ export default function BlogPage() {
             <h2 className="font-sans text-2xl text-ink">More reading</h2>
             <span className="text-xs text-stone-soft">{rest.length} pieces</span>
           </div>
-          <div className="mt-2 grid gap-12 md:grid-cols-2 md:gap-10">
+          <div className="mt-2 grid items-stretch gap-12 md:grid-cols-2 md:gap-10">
             {rest.map((p) => (
               <PostCard key={p.slug} post={p} />
             ))}

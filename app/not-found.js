@@ -11,7 +11,7 @@ export default function NotFound() {
         <p className="lead mt-8 max-w-lg text-stone">
           The link may have moved, or the work it pointed to now lives inside one of our divisions.
         </p>
-        <div className="mt-10 flex flex-wrap gap-4">
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
           <ButtonLink href="/">Back to home</ButtonLink>
           <ButtonLink href="/divisions" variant="outline">Explore divisions</ButtonLink>
         </div>

@@ -66,7 +66,7 @@ export function ButtonLink({ href, children, external = false, variant = "ink", 
   return (
     <Tag
       {...props}
-      className={`group relative inline-flex items-center overflow-hidden rounded-full border px-7 py-3.5 text-sm font-medium tracking-tight transition-colors duration-500 ${styles} ${hoverText} ${className}`}
+      className={`group relative inline-flex w-full items-center justify-center overflow-hidden rounded-full border px-6 py-3.5 text-sm font-medium tracking-tight transition-colors duration-500 sm:w-auto sm:justify-start sm:px-7 ${styles} ${hoverText} ${className}`}
     >
       <span
         className={`absolute inset-0 origin-bottom scale-y-0 transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-y-100 ${fill}`}
