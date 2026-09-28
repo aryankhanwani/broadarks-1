@@ -1,7 +1,6 @@
 import { DIVISIONS } from "@/data/site";
 import { CTABand, PageHero } from "@/components/sections/Shared";
 import { DivisionBlock } from "@/components/sections/DivisionSections";
-import { DivisionIndex } from "@/components/sections/HomeSections";
 
 export const metadata = {
   title: "Divisions",
@@ -24,7 +23,6 @@ export default function DivisionsPage() {
           { label: "Structure", value: "Ventures + Foundation" },
         ]}
       />
-      <DivisionIndex divisions={DIVISIONS} />
       {DIVISIONS.map((d, i) => (
         <DivisionBlock key={d.slug} d={d} i={i} />
       ))}

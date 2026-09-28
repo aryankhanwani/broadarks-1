@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Logo from "./Logo";
 import { ButtonLink } from "./ArrowLink";
-import { NAV } from "@/data/site";
+import { DIVISIONS, NAV } from "@/data/site";
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -16,6 +16,7 @@ export default function Header() {
   const [hidden, setHidden] = useState(false);
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
+  const [menu, setMenu] = useState(null);
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const prev = scrollY.getPrevious() ?? 0;
@@ -27,7 +28,10 @@ export default function Header() {
   const darkHero = /^\/divisions\/.+/.test(pathname);
   const light = darkHero && !solid && !open;
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setMenu(null);
+  }, [pathname]);
 
   useEffect(() => {
     if (open) window.__lenis?.stop();
@@ -56,21 +60,81 @@ export default function Header() {
               {NAV.map((item) => {
                 const active =
                   item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+                const hasMenu = item.href === "/divisions";
                 return (
-                  <Link
+                  <div
                     key={item.href}
-                    href={item.href}
-                    className={`group relative px-4 py-2 text-sm tracking-tight transition-colors duration-300 ${
-                      light ? "text-white/65 hover:text-white" : "text-stone hover:text-ink"
-                    }`}
+                    className="relative"
+                    onMouseEnter={() => setMenu(hasMenu ? item.href : null)}
+                    onMouseLeave={() => setMenu(null)}
                   >
-                    <span className={active ? (light ? "text-white" : "text-ink") : ""}>{item.label}</span>
-                    <span
-                      className={`absolute bottom-1 left-4 right-4 h-px origin-left bg-sky transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] ${
-                        active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    <Link
+                      href={item.href}
+                      className={`group relative flex items-center gap-1.5 px-4 py-2 text-sm tracking-tight transition-colors duration-300 ${
+                        light ? "text-white/65 hover:text-white" : "text-stone hover:text-ink"
                       }`}
-                    />
-                  </Link>
+                    >
+                      <span className={active ? (light ? "text-white" : "text-ink") : ""}>{item.label}</span>
+                      {hasMenu && (
+                        <svg
+                          viewBox="0 0 24 24"
+                          aria-hidden
+                          className={`h-3 w-3 transition-transform duration-300 ${
+                            menu === item.href ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                        >
+                          <path d="M6 9l6 6 6-6" />
+                        </svg>
+                      )}
+                      <span
+                        className={`absolute bottom-1 left-4 right-4 h-px origin-left bg-sky transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] ${
+                          active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                        }`}
+                      />
+                    </Link>
+
+                    {hasMenu && (
+                      <AnimatePresence>
+                        {menu === item.href && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 8 }}
+                            transition={{ duration: 0.35, ease: EASE }}
+                            className="absolute left-0 top-full w-[22rem] pt-3"
+                          >
+                            <div className="overflow-hidden border border-line bg-white/95 p-2 shadow-[0_24px_60px_-30px_rgba(16,16,20,0.45)] backdrop-blur-xl">
+                              {DIVISIONS.map((d) => (
+                                <Link
+                                  key={d.slug}
+                                  href={`/divisions/${d.slug}`}
+                                  onClick={() => setMenu(null)}
+                                  className="group flex items-baseline gap-3 px-4 py-3 transition-colors duration-300 hover:bg-shell"
+                                >
+                                  <span className="font-sans text-[0.7rem] text-sky">{d.index}</span>
+                                  <span className="min-w-0">
+                                    <span className="block font-sans text-sm tracking-tight text-ink">{d.name}</span>
+                                    <span className="mt-0.5 block truncate text-xs text-stone">{d.tagline}</span>
+                                  </span>
+                                </Link>
+                              ))}
+                              <Link
+                                href="/divisions"
+                                onClick={() => setMenu(null)}
+                                className="mt-1 flex items-center gap-2 border-t border-line px-4 py-3 text-xs uppercase tracking-[0.16em] text-stone-soft transition-colors duration-300 hover:text-ink"
+                              >
+                                All divisions
+                                <span aria-hidden>→</span>
+                              </Link>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    )}
+                  </div>
                 );
               })}
             </nav>
@@ -161,6 +225,19 @@ export default function Header() {
                       </span>
                       {item.label}
                     </Link>
+                    {item.href === "/divisions" && (
+                      <div className="-mt-1 flex flex-col pb-5 pl-10">
+                        {DIVISIONS.map((d) => (
+                          <Link
+                            key={d.slug}
+                            href={`/divisions/${d.slug}`}
+                            className="py-2 text-sm text-stone"
+                          >
+                            {d.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
                 ))}
               </nav>

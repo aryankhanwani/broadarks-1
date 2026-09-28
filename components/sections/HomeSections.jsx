@@ -141,28 +141,3 @@ export function FoundersStrip() {
     </section>
   );
 }
-
-/* ---------- Division index quick links ---------- */
-export function DivisionIndex({ divisions }) {
-  return (
-    <section className="bg-white py-16 lg:py-24">
-      <div className="container-x">
-        <Rule />
-        <div className="grid gap-10 pt-10 sm:grid-cols-2 lg:grid-cols-4">
-          {divisions.map((d, i) => (
-            <Reveal key={d.slug} delay={i * 0.06}>
-              <Link href={`/divisions/${d.slug}`} className="group block">
-                <span className="font-sans text-xs text-sky">{d.index}</span>
-                <h3 className="mt-3 font-sans text-lg text-ink">{d.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-stone">{d.summary}</p>
-                <span className="mt-4 inline-block text-xs text-stone-soft transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-1.5">
-                  Explore →
-                </span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
