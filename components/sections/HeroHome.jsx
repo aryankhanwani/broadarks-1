@@ -55,7 +55,7 @@ export default function HeroHome() {
             </span>
             <br />
             <Words text="for a" delay={0.3} />{" "}
-            <span className="font-serif font-normal italic tracking-[-0.01em]">
+            <span className="font-serif font-normal italic">
               <Words text="technology-shaped" delay={0.42} />
             </span>
             <br />

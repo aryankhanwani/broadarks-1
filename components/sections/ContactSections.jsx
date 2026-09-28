@@ -9,6 +9,9 @@ import { DIVISIONS } from "@/data/site";
 
 const EASE = [0.16, 1, 0.3, 1];
 
+const MAPS_EMBED_SRC =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1833.816042630252!2d77.42007795791575!3d23.183624444824403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c433af6de395b%3A0x6dd5492ce91aedd6!2sBroadArks%20Technology%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1787568361447!5m2!1sen!2sin";
+
 const INTERESTS = [
   "Partnership",
   "Learning & skills",
@@ -354,6 +357,76 @@ export function FAQ() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function VisitUs() {
+  return (
+    <section className="bg-white py-20 lg:py-28">
+      <div className="container-x">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <SectionLabel>Find us</SectionLabel>
+            <h2 className="display-3 mt-5 max-w-[14ch] font-sans">
+              <Words text="Come and see the work." />
+            </h2>
+          </div>
+          <ArrowLink
+            href="https://www.google.com/maps/search/?api=1&query=BroadArks+Technology+Pvt.+Ltd."
+            external
+          >
+            Open in Google Maps
+          </ArrowLink>
+        </div>
+
+        <div className="mt-12 grid gap-10 border-t border-line pt-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Reveal>
+              <p className="eyebrow text-stone-soft">Office</p>
+              <p className="mt-3 text-[1.0625rem] leading-relaxed text-ink">
+                BroadArks Technology Pvt. Ltd.
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-stone">
+                Bhopal, Madhya Pradesh, India
+              </p>
+              <div className="mt-8 space-y-2 text-sm">
+                <a
+                  href="mailto:hello@broadarks.com"
+                  className="block text-ink transition-colors hover:text-sky"
+                >
+                  hello@broadarks.com
+                </a>
+                <a
+                  href="tel:+911140000000"
+                  className="block text-stone transition-colors hover:text-ink"
+                >
+                  +91 11 4000 0000
+                </a>
+              </div>
+              <p className="mt-8 max-w-xs text-sm leading-relaxed text-stone">
+                Visits are by appointment — write ahead and we will make sure the right people
+                are in the room.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="lg:col-span-8">
+            <Reveal delay={0.08}>
+              <div className="aspect-[16/10] w-full overflow-hidden border border-line bg-shell sm:aspect-[16/9]">
+                <iframe
+                  src={MAPS_EMBED_SRC}
+                  title="BroadArks Technology Pvt. Ltd. on Google Maps"
+                  className="h-full w-full border-0"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>

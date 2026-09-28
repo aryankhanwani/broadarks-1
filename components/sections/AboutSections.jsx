@@ -190,7 +190,7 @@ export function Timeline() {
                 </h3>
                 <p className="mt-3 max-w-lg text-sm leading-relaxed text-white/60">{t.text}</p>
               </div>
-              <span className="absolute left-0 top-0 h-px w-0 bg-sky transition-[width] duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:w-full" />
+              <span className="absolute -top-px left-0 h-px w-0 bg-sky transition-[width] duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:w-full" />
             </motion.div>
           ))}
         </div>
@@ -206,7 +206,7 @@ export function CultureGrid() {
     { t: "Research-led", d: "Every programme starts with evidence, not instinct." },
     { t: "Partnership first", d: "Institutions, industry and communities as co-authors." },
     { t: "Zero-waste ambition", d: "Responsibility designed in, not bolted on." },
-    { t: "Measured honestly", d: "Outcomes reported the way we would want them reported to us." },
+    { t: "Measured honestly", d: "Outcomes reported as we would want them reported to us." },
   ];
 
   return (
@@ -220,13 +220,15 @@ export function CultureGrid() {
           <ArrowLink href="/divisions">See the divisions</ArrowLink>
         </div>
 
-        <div className="mt-12 grid gap-x-10 border-t border-line sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid items-stretch gap-x-10 border-t border-line sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it, i) => (
-            <Reveal key={it.t} delay={i * 0.05}>
-              <div className="group border-b border-line py-8">
+            <Reveal key={it.t} delay={i * 0.05} className="h-full">
+              <div className="group flex h-full flex-col border-b border-line py-8">
                 <span className="font-sans text-xs text-sky">0{i + 1}</span>
                 <h3 className="mt-4 font-sans text-lg text-ink">{it.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-stone">{it.d}</p>
+                <p className="mt-2 max-w-[34ch] text-sm leading-relaxed text-stone sm:min-h-[2.75rem]">
+                  {it.d}
+                </p>
               </div>
             </Reveal>
           ))}

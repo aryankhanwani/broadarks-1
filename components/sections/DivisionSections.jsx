@@ -155,7 +155,7 @@ export function DivisionBody({ d }) {
                   </h3>
                   <p className="mt-3 max-w-lg text-sm leading-relaxed text-stone">{p.text}</p>
                 </div>
-                <span className="absolute bottom-0 left-0 h-px w-0 bg-ink transition-[width] duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:w-full" />
+                <span className="absolute -top-px left-0 h-px w-0 bg-ink transition-[width] duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:w-full" />
               </motion.div>
             ))}
           </div>
@@ -218,8 +218,7 @@ export function OtherDivisions({ current }) {
                     loading="lazy"
                   />
                 </div>
-                <span className="font-sans text-xs text-sky">{d.index}</span>
-                <h3 className="mt-3 font-sans text-xl text-ink">{d.name}</h3>
+                <h3 className="font-sans text-xl text-ink">{d.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-stone">{d.summary}</p>
               </Link>
             </Reveal>

@@ -3,6 +3,7 @@ import {
   ContactForm,
   DivisionContacts,
   FAQ,
+  VisitUs,
 } from "@/components/sections/ContactSections";
 
 export const metadata = {
@@ -27,6 +28,7 @@ export default function ContactPage() {
       />
       <ContactForm />
       <DivisionContacts />
+      <VisitUs />
       <FAQ />
     </>
   );

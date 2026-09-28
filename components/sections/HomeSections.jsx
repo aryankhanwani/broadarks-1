@@ -90,7 +90,7 @@ export function Principles() {
                       <p className="mt-4 max-w-md text-[0.95rem] leading-relaxed text-stone">{p.text}</p>
                     </div>
                   </div>
-                  <span className="absolute bottom-0 left-0 h-px w-0 bg-ink transition-[width] duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:w-full" />
+                  <span className="absolute -top-px left-0 h-px w-0 bg-ink transition-[width] duration-[900ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:w-full" />
                 </motion.div>
               ))}
             </div>

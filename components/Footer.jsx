@@ -51,11 +51,11 @@ export default function Footer() {
                   <li key={d.slug}>
                     <Link
                       href={`/divisions/${d.slug}`}
-                      className="group flex items-center justify-between text-[0.95rem] text-ink transition-colors hover:text-sky"
+                      className="group flex items-baseline gap-3 text-[0.95rem] text-ink transition-colors hover:text-sky"
                     >
-                      {d.name}
-                      <span className="text-xs text-stone-soft transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-1">
-                        {d.index}
+                      <span className="w-6 shrink-0 text-xs text-stone-soft">{d.index}</span>
+                      <span className="transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-1">
+                        {d.name}
                       </span>
                     </Link>
                   </li>

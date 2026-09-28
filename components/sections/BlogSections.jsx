@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/Section";
 import { ArrowLink } from "@/components/ArrowLink";
 import { CurtainMedia, Parallax, Reveal, Words, ZoomMedia } from "@/components/Motion";
@@ -47,89 +46,6 @@ export function FeaturedPost({ post }) {
             </div>
           </div>
         </Link>
-      </div>
-    </section>
-  );
-}
-
-export function Newsletter() {
-  const [email, setEmail] = useState("");
-  const [state, setState] = useState("idle");
-
-  const submit = (e) => {
-    e.preventDefault();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setState("error");
-      return;
-    }
-    setState("sent");
-  };
-
-  return (
-    <section className="bg-shell py-20 lg:py-28">
-      <div className="container-x grid gap-10 lg:grid-cols-12">
-        <div className="lg:col-span-5">
-          <SectionLabel>Stay close</SectionLabel>
-          <h2 className="display-3 mt-5 max-w-[14ch] font-sans">
-            <Words text="A few times a year. Nothing in between." />
-          </h2>
-        </div>
-        <div className="lg:col-span-6 lg:col-start-7">
-          <Reveal>
-            <p className="text-[1.0625rem] leading-relaxed text-stone">
-              We send the journal when there is something genuinely worth sending — new writing,
-              new capability, occasionally a decision we got wrong and what it taught us.
-            </p>
-            <form onSubmit={submit} className="mt-8">
-              <div className="relative flex items-center border-b border-ink/25 pb-3 transition-colors focus-within:border-ink">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    if (state !== "idle") setState("idle");
-                  }}
-                  placeholder="you@company.com"
-                  className="w-full bg-transparent font-sans text-lg text-ink outline-none placeholder:text-stone-soft"
-                  aria-label="Email address"
-                />
-                <button
-                  type="submit"
-                  className="group ml-4 shrink-0 text-sm font-medium text-ink"
-                >
-                  Subscribe
-                  <span className="ml-2 inline-block transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-1.5">→</span>
-                </button>
-              </div>
-              <div className="mt-3 h-5">
-                <AnimatePresence mode="wait">
-                  {state === "error" && (
-                    <motion.p
-                      key="err"
-                      initial={{ opacity: 0, y: -6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      className="text-xs text-sky"
-                    >
-                      Please enter a valid email address.
-                    </motion.p>
-                  )}
-                  {state === "sent" && (
-                    <motion.p
-                      key="ok"
-                      initial={{ opacity: 0, y: -6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      className="text-xs text-ink"
-                    >
-                      Thank you — you are on the list.
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-              </div>
-            </form>
-          </Reveal>
-        </div>
       </div>
     </section>
   );

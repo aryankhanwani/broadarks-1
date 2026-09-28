@@ -88,7 +88,7 @@ export function StatsBand({ tone = "ink" }) {
               className="group relative py-10 sm:py-14"
             >
               <span
-                className="absolute left-0 top-0 h-px w-0 transition-[width] duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:w-full"
+                className="absolute -top-px left-0 h-px w-0 transition-[width] duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:w-full"
                 style={{ background: "var(--color-sky)" }}
               />
               <p className={`font-sans text-[clamp(2.75rem,5vw,4.5rem)] leading-none tracking-[-0.04em] ${dark ? "text-white" : "text-ink"}`}>

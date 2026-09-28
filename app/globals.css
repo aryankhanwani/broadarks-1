@@ -89,3 +89,14 @@ html.lenis, html.lenis body { height: auto; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Serif italic: unlayered so it wins over Tailwind's font-weight utilities.
+   Instrument Serif ships a single weight — the hairline stroke adds the extra
+   optical weight, and the loosened tracking keeps the slanted glyphs readable. */
+.font-serif.italic,
+.font-serif .italic,
+.italic.font-serif {
+  -webkit-text-stroke: 0.019em currentColor;
+  letter-spacing: 0.012em;
+  word-spacing: 0.05em;
+}

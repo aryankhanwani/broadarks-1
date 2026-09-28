@@ -1,6 +1,6 @@
 import { POSTS } from "@/data/site";
 import { CTABand, PageHero, PostCard } from "@/components/sections/Shared";
-import { FeaturedPost, Newsletter } from "@/components/sections/BlogSections";
+import { FeaturedPost } from "@/components/sections/BlogSections";
 
 export const metadata = {
   title: "Journal",
@@ -36,7 +36,6 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
-      <Newsletter />
       <CTABand
         eyebrow="Say hello"
         title="Have something you would like us to write about?"
